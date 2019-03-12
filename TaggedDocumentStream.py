@@ -12,7 +12,7 @@ class TaggedDocumentStream(object):
         self.maxrows = maxrows
 
     # Yield a TaggedDocument by iterating over the lines in a file
-    def yield_td(self, doc_file, label_file):
+    def yield_td(self, note_file, label_file):
 
         # Keep track of row count
         row_counter = 0
@@ -29,7 +29,7 @@ class TaggedDocumentStream(object):
                 row_counter += 1
 
                 # Yield a TaggedDocument by splitting on whitespaces, and omitting the final newline character
-                yield TaggedDocument(doc[:-1].split(" "), [label[:-1]])
+                yield TaggedDocument(note[:-1].split(" "), [label[:-1]])
 
     # Implement iteration function by iterating over all note and label files
     def __iter__(self):
