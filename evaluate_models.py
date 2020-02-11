@@ -27,7 +27,7 @@ def binary_cutoff(group):
     # Return
     return(group)
 
-def evaluate_models():
+def evaluate_models(out_fig_file_name):
     # Read files
     predictions = pd.read_csv("logs/predictions.csv", sep=";")
     
@@ -74,7 +74,8 @@ def evaluate_models():
     plt.title('AUROC Site x = {:.3f}'.format(auc_mean))
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.legend(loc="lower right")    
+    plt.legend(loc="lower right")
+    plt.savefig(out_fig_file_name)
         
     # Compute area under curve and variance based on DeLong method
     auc_delong, var_delong = da.delong_roc_variance(predictions['true_label'], 
@@ -129,6 +130,7 @@ def evaluate_external_models():
     predictions_external.to_csv("logs/predictions_external.csv", sep=";", index=False)
     
 if __name__ == "__main__":
-    evaluate_models()
+    out_fig_file_name = "auc.png"
+    evaluate_models(out_fig_file_name)
     evaluate_external_models()
     
