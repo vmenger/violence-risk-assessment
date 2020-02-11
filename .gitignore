@@ -7,3 +7,4 @@ logs
 models/paragraph2vec_model
 models/svm_model
 models_external
+auc.png
