@@ -6,6 +6,15 @@ Created on Tue Feb 11 15:40:37 2020
 """
 import pandas as pd
 import nltk
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
 nltk.download('punkt')
 import process_text as pt
 import os
@@ -58,9 +67,12 @@ def train_p2v_model(notes_infilename, notes_outfilename, labels_outfilename):
 
 if __name__ == "__main__":
     notes_filename = "data/source/notes_full.csv"
+    processed_notes_dir = os.path.join("data", "processed_notes")
+    if not os.path.exists(processed_notes_dir):
+        os.makedirs(processed_notes_dir)
 
     # Processed notes and labels are written to two seperate files
-    notes_file_path = os.path.join('data', 'processed_notes', 'notes.txt')
-    label_file_path = os.path.join('data', 'processed_notes', 'labels.txt')
+    notes_file_path = os.path.join(processed_notes_dir, 'notes.txt')
+    label_file_path = os.path.join(processed_notes_dir, 'labels.txt')
 
     train_p2v_model(notes_filename, notes_file_path, label_file_path)

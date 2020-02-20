@@ -8,6 +8,7 @@ import gensim.models as gm
 import pandas as pd
 import process_text as pt
 import csv
+import os
 
 def read_data():
     # Read admissions
@@ -105,7 +106,10 @@ def process_notes(notes, admissions, paragraph2vec_model):
     notes_concat = notes_concat.merge(admissions[['outcome', 'admission_id', 'patient_id']])
     
     # Write processed data to file for other notebooks
-    notes_concat.to_csv("data/processed/notes.csv", 
+    processed_dir = os.path.join("data", "processed")
+    if not os.path.exists(processed_dir):
+        os.makedirs(processed_dir)
+    notes_concat.to_csv(os.path.join(processed_dir, "notes.csv"), 
                         sep=";", 
                         index=False, 
                         quoting=csv.QUOTE_ALL)
