@@ -98,7 +98,7 @@ def create_notes_full(notes):
     df.to_csv("data/source/notes_full.csv", sep=";", index = False)
     
 def read_notes(notes_file):
-    with open(notes_file) as f:
+    with open(notes_file, encoding='latin-1') as f:
         return f.readlines()
     
 def full_program(notes_file, min_num_notes, min_note_length):
