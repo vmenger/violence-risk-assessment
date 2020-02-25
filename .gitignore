@@ -1,0 +1,10 @@
+.ipynb_checkpoints
+__pycache__
+data/source/*.csv
+data/processed
+data/processed_notes
+logs
+models/paragraph2vec_model
+models/svm_model
+models_external
+auc.png
