@@ -76,5 +76,3 @@ if __name__ == "__main__":
     label_file_path = os.path.join(processed_notes_dir, 'labels.txt')
 
     train_p2v_model(notes_filename, notes_file_path, label_file_path)
-
-    
