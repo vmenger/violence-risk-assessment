@@ -13,6 +13,7 @@ import scipy as scp
 import gensim.models as gsm
 import joblib
 import process_text as pt
+import sys
 
 # Determine a binary cutoff for a group of predictions
 def binary_cutoff(group):
@@ -130,7 +131,11 @@ def evaluate_external_models():
     predictions_external.to_csv("logs/predictions_external.csv", sep=";", index=False)
     
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print('ERROR. Usage:',sys.argv[0],'<with_external>')
+        exit()
     out_fig_file_name = "auc.png"
     evaluate_models(out_fig_file_name)
-    evaluate_external_models()
+    if sys.argv[1].lower()[0] in ['t', 'y', '1']:
+        evaluate_external_models()
     
