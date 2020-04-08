@@ -77,6 +77,7 @@ def evaluate_models(out_fig_file_name):
     plt.ylabel('True Positive Rate')
     plt.legend(loc="lower right")
     plt.savefig(out_fig_file_name)
+    print("Saved figure to ",out_fig_file_name)
         
     # Compute area under curve and variance based on DeLong method
     auc_delong, var_delong = da.delong_roc_variance(predictions['true_label'], 
