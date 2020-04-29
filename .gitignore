@@ -7,5 +7,6 @@ data/processed_notes
 logs
 models/paragraph2vec_model*
 models/svm_model
+models/til2018
 models_external
 auc.png
